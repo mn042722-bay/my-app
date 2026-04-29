@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "eslint": "^10.2.1",
+    "prettier": "^3.8.3"
+  },
+  "scripts": {
+    "prettier-format": "prettier --config .prettierrc '**/*.ts' --write"
+  }
+}
