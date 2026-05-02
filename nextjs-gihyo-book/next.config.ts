@@ -1,7 +1,32 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  reactStrictMode: true,
+  compiler: (() => {
+    let compilerConfig = {
+    }
 
-export default nextConfig;
+  if (process.env.NODE_ENV === 'production') {
+    compilerConfig = {
+      ...compilerConfig,
+      // 本番環境ではReact Testing Libraryで使用するdata-testid属性を削除
+      reactRemovePropeties: { properties: ['^data-testid$'] },
+    }
+  }
+
+  return compilerConfig
+  
+})(),
+async rewrites() {
+  return [
+    {
+      //ex . /api/proxy
+      source: `${process.env.NEXT_PUBLITC_API_BASE_PATH}/:match*`,
+      // ex. http://localhost:8000
+      destination: `${process.env.API_BASE_URL}/:match`,
+    },
+  ]
+},
+}
+
+module.exports = nextConfig
