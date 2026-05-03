@@ -3,12 +3,12 @@
  * CSSプロパティの値をブレークポイントごとに設定できる
  * TはCSSプロパティの値の型
  */
-export type Rresponsive<T> = {
-    base?: T // デフォルトのスタイル
-    sm?: T // 640px以上
-    md?: T // 768px以上
-    lg?: T // 1024px以上
-    xl?: T // 1280px以上
+export type ResponsiveProp<T> = {
+  base?: T
+  sm?: T
+  md?: T
+  lg?: T
+  xl?: T
 }
 
 export type Responsive<T> = T | ResponsiveProp<T>
@@ -22,7 +22,7 @@ type SelfPosition =
 | 'flex-end'
 | 'flex-start'
 | 'self-end'
-| 'self-strat'
+| 'self-start'
 | 'start'
 
 type ContentPosition = 'center' | 'end' | 'flex-end' | 'flex-start' | 'start'
@@ -50,16 +50,16 @@ export type CSSPropertyAlignItems =
 | (string & {})
 
 export type CSSPropertyAlignContent =
-| CSSPropertyGlobals
-| SelfPosition
-| 'center'
-| 'end'
-| 'flex-end'
-| 'flex-start'
-| 'start'
-| 'baseline'
-| 'normal'
-| (string & {})
+  | CSSPropertyGlobals
+  | ContentDistribution
+  | 'center'
+  | 'end'
+  | 'flex-end'
+  | 'flex-start'
+  | 'start'
+  | 'baseline'
+  | 'normal'
+  | (string & {})
 
 
 export type CSSPropertyJustifyItems =
@@ -96,15 +96,24 @@ export type CSSPropertyFlexDirection =
 | 'row-reverse'
 
 export type CSSPropertyJustifySelf =
-| CSSPropertyGlobals
-| SelfPosition
-| 'auto'
-| 'baseline'
-| 'left'
-| 'normal'
-| 'right'
-| 'stretch'
-| (string & {})
+  | CSSPropertyGlobals
+  | SelfPosition
+  | 'auto'
+  | 'baseline'
+  | 'left'
+  | 'normal'
+  | 'right'
+  | 'stretch'
+  | (string & {})
+
+export type CSSPropertyAlignSelf =
+  | CSSPropertyGlobals
+  | SelfPosition
+  | 'auto'
+  | 'baseline'
+  | 'normal'
+  | 'stretch'
+  | (string & {})
 
 /**
  * Grid
@@ -118,15 +127,11 @@ export type CSSPropertyGridColumn =
 
  export type CSSPropertyGridRow = CSSPropertyGlobals | GridLine | (string & {})
 
- export type CSSPropertyGridAutoFlow = 
- | CSSPropertyGlobals
- | 'column'
- | 'dense'
- | 'row'
- | (string & {}
+export type CSSPropertyGridAutoFlow =
+  | CSSPropertyGlobals
+  | 'column'
+  | 'dense'
+  | 'row'
+  | (string & {})
 
-  
- )
-
-
-
+export type CSSPropertyGridArea = CSSPropertyGlobals | GridLine | (string & {})
